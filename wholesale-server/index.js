@@ -12,8 +12,7 @@ app.use(express.json());
 
 
 
-const uri =
-  'mongodb+srv://vat_management:U9zN7Q47bHvQQNz0@cluster0.kpvnuu1.mongodb.net/?retryWrites=true&w=majority';
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.evn2ej1.mongodb.net/?retryWrites=true&w=majority`;
 
 
 
@@ -27,16 +26,16 @@ async function run() {
   try {
     await client.connect();
     // console.log("database connect");
-   const userCollection = client.db('vat_management').collection('user');
+   const userCollection = client.db('e-commerce').collection('user');
     const productCollection = client
-      .db('vat_management')
+      .db('e-commerce')
       .collection('products');
     const bookProductCollection = client
-      .db('vat_management')
+      .db('e-commerce')
       .collection('bookings');
-    const buyProductCollection = client.db('vat_management').collection('buys');
+    const buyProductCollection = client.db('e-commerce').collection('buys');
     const updateProductCollection = client
-      .db('vat_management')
+      .db('e-commerce')
       .collection('updateProducts');
 
     //   // // // // // // // // // // // //
@@ -123,65 +122,65 @@ async function run() {
       const result = await productCollection.findOne(query);
       res.send(result);
     });
-    // // Delete all product
-    app.delete('/productDelete', async (req, res) => {
-      const result = await productCollection.deleteMany(query);
-      res.send(result);
-    });
+    // // // Delete all product
+    // app.delete('/productDelete', async (req, res) => {
+    //   const result = await productCollection.deleteMany(query);
+    //   res.send(result);
+    // });
 
     // // update Product
 
-    app.post('/updateProduct', async (req, res) => {
-      const postResult = req.body;
-      const result = await updateProductCollection.insertOne(postResult);
-      res.send(result);
-    });
-    //  get update Product
-    app.get('/updateProduct', async (req, res) => {
-      const query = {};
-      const cursor = updateProductCollection.find(query);
-      const result = await cursor.toArray();
-      res.send(result);
-    });
-    // // booking Product
+    // app.post('/updateProduct', async (req, res) => {
+    //   const postResult = req.body;
+    //   const result = await updateProductCollection.insertOne(postResult);
+    //   res.send(result);
+    // });
+    // //  get update Product
+    // app.get('/updateProduct', async (req, res) => {
+    //   const query = {};
+    //   const cursor = updateProductCollection.find(query);
+    //   const result = await cursor.toArray();
+    //   res.send(result);
+    // });
+    // // // booking Product
 
-    app.post('/bookings', async (req, res) => {
-      const postResult = req.body;
-      const result = await bookProductCollection.insertOne(postResult);
-      res.send(result);
-    });
-    // // get booking products
-    app.get('/booking', async (req, res) => {
-      const query = {};
-      const cursor = bookProductCollection.find(query);
-      const result = await cursor.toArray();
-      res.send(result);
-    });
-    // Delete all book
-    app.delete('/bookings', async (req, res) => {
-      const result = await bookProductCollection.deleteMany();
-      res.send(result);
-    });
-    // Delete one book  Product
-    app.delete('/booking/:id', async (req, res) => {
-      const id = req.params.id;
-      const query = { _id: ObjectId(id) };
-      const result = await bookProductCollection.deleteOne(query);
-      res.send(result);
-    });
-    // buy information
-    app.post('/buys', async (req, res) => {
-      const postResult = req.body;
-      const result = await buyProductCollection.insertOne(postResult);
-      res.send(result);
-    });
-    // // get booking products
-    app.get('/buys', async (req, res) => {
-      const query = {};
-      const cursor = buyProductCollection.find(query);
-      const result = await cursor.toArray();
-      res.send(result);
-    });
+    // app.post('/bookings', async (req, res) => {
+    //   const postResult = req.body;
+    //   const result = await bookProductCollection.insertOne(postResult);
+    //   res.send(result);
+    // });
+    // // // get booking products
+    // app.get('/booking', async (req, res) => {
+    //   const query = {};
+    //   const cursor = bookProductCollection.find(query);
+    //   const result = await cursor.toArray();
+    //   res.send(result);
+    // });
+    // // Delete all book
+    // app.delete('/bookings', async (req, res) => {
+    //   const result = await bookProductCollection.deleteMany();
+    //   res.send(result);
+    // });
+    // // Delete one book  Product
+    // app.delete('/booking/:id', async (req, res) => {
+    //   const id = req.params.id;
+    //   const query = { _id: ObjectId(id) };
+    //   const result = await bookProductCollection.deleteOne(query);
+    //   res.send(result);
+    // });
+    // // buy information
+    // app.post('/buys', async (req, res) => {
+    //   const postResult = req.body;
+    //   const result = await buyProductCollection.insertOne(postResult);
+    //   res.send(result);
+    // });
+    // // // get booking products
+    // app.get('/buys', async (req, res) => {
+    //   const query = {};
+    //   const cursor = buyProductCollection.find(query);
+    //   const result = await cursor.toArray();
+    //   res.send(result);
+    // });
   } finally {
   }
 }
@@ -189,9 +188,9 @@ async function run() {
 run().catch(console.dir);
 
 app.get('/', (req, res) => {
-  res.send('Running Vat Management Pos Server');
+  res.send('Running E-commerce server');
 });
 
 app.listen(port, () => {
-  console.log('Vat Management Pos Server is running ');
+  console.log('E-commerce server is running ');
 });
