@@ -7,9 +7,8 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 // import axios from "axios";
-import Loading from "../Share/Loading";
-import login from "../../Images/Login/login.jpg";
 import { toast } from "react-toastify";
+import Loading from "../Share/Loading";
 
 const Login = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
@@ -56,14 +55,12 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center h-screen bg-slate-700">
-      <div className="w-4/12 pt-40">
-        <img className="w-11/12 rounded-xl" src={login} alt="" />
-      </div>
+    <div className="flex justify-center  ">
+     
       <div className="flex justify-center items-center ">
-        <div className="card w-96 shadow-2xl bg-violet-50">
+        <div className="card w-96 shadow-2xl bg-violet-200 mt-20">
           <div className="card-body">
-            <h2 className="text-center text-2xl">Login</h2>
+            <h2 className="text-center text-4xl font-serif">Login</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="form-control w-full max-w-xs">
                 <label className="label">
@@ -139,19 +136,13 @@ const Login = () => {
             </form>
             <p>
               <small>
-                New to BoxBerry Motor?{" "}
+                New to e-commerce?{" "}
                 <Link to="/createAccount" className="text-orange-600 font-bold">
                   Create New Account
                 </Link>
               </small>
             </p>
-            <div className="divider">OR</div>
-            <button
-              onClick={() => signInWithGoogle()}
-              className="btn btn-outline font-black"
-            >
-              Continue With Google
-            </button>
+           
           </div>
         </div>
       </div>
