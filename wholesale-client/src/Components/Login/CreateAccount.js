@@ -30,28 +30,26 @@ const CreateAccount = () => {
     navigate("/");
   }
 
-  const createDBUser = (name, email) => {
-    // fetch(`https://boxberry.onrender.com/create-user/${email}`, {
-    //   method: "PUT",
-    //   headers: {
-    //     "content-type": "application/json",
-    //   },
-    //   body: JSON.stringify({ name, email }),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //   });
+  const createDBUser = (name, email,phone,address,tradeId) => {
+    fetch(`http://localhost:5000/create-user/${email}`, {
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({ name, email, phone, address, tradeId }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        navigate('/');
+      });
   };
 
-  const onSubmit = (data) => {
-    // console.log(data.email, data.password, data.name);
-    console.log(data)
-    // createUserWithEmailAndPassword(data.email, data.password);
-    updateProfile({ displayName: data.name });
-    createDBUser(data.name, data.email);
-    // toast.success("Updated profile");
-    // navigate("/");
+  const onSubmit = async(data) => {
+   
+    await createUserWithEmailAndPassword(data.email, data.password);
+   await updateProfile({ displayName: data.name });
+     createDBUser(data.name, data.email,data.phone,data.address,data.tradeId);
+   
   };
   return (
     <div className="flex justify-center  ">
