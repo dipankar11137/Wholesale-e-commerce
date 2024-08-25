@@ -1,9 +1,23 @@
 import React from 'react';
 
-const Buy = () => {
+const Buy = ({product}) => {
   return (
-    <div>
-      <h1>Buy</h1>
+    <div className="card card-compact bg-base-100 w-64 shadow-xl">
+      <figure>
+        <img className="w-full h-48" src={product?.img} alt={product?.name} />
+      </figure>
+      <div className="card-body">
+        <h2 className="card-title">{product?.name}</h2>
+        <p>
+          Quantity: <span className="font-semibold">{product?.quantity}</span>
+        </p>
+        <p>
+          Price: <span className="font-semibold text-primary">{product?.price} BDT</span>
+        </p>
+        <div className="card-actions justify-end">
+          <button className="btn btn-primary btn-sm">Buy Now</button>
+        </div>
+      </div>
     </div>
   );
 };

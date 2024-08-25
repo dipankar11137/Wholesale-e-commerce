@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import CreateAccount from "./Components/Login/CreateAccount";
 import Login from "./Components/Login/Login";
-import Buy from "./Components/Pages/Home/Buy/Buy";
+import Buys from "./Components/Pages/Home/Buy/Buys";
 import Home from "./Components/Pages/Home/Home";
 import Sales from "./Components/Pages/Home/Sales/Sales";
 import Navbar from "./Components/Share/Navbar";
@@ -22,7 +22,7 @@ function App() {
         <Route path="/createAccount" element={<CreateAccount />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/sales" element={<Sales />}></Route>
-        <Route path="/buy" element={<Buy />}></Route>
+        <Route path="/buy" element={<Buys />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/*" element={<NotFound />}></Route>
       </Routes>
