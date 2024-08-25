@@ -1,16 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import useUser from '../../../../hooks/useUser';
 
 const Sales = () => {
+  const [user, loading] = useUser()
+  const [category, setCategory] = useState('')
+  const [pType,setPType]=useState("")
+  const imageHostKey = 'c70a5fc10619997bd7315f2bf28d0f3e';
+
    const {
      register,
      formState: { errors },
      handleSubmit,
+     reset,
   } = useForm();
   
-  const onSubmit = (data) => {
-    console.log(data)
-  }
+  const onSubmit = data => {
+    
+  const image = data.image[0];
+  const formData = new FormData();
+  formData.append('image', image);
+  const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imageHostKey}`;
+  fetch(url, {
+    method: 'POST',
+    body: formData,
+  })
+    .then(res => res.json())
+    .then(imageData => {
+      const image = imageData.data.url;
+      const updateUrl = {
+        ...data,
+        category,
+     pType,
+        img: image,
+      };
+
+      console.log('aci', updateUrl);
+      fetch(`http://localhost:5000/products`, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify(updateUrl),
+      })
+        .then(res => res.json())
+        .then(data => {
+          toast.success('Add Product');
+          reset();
+        });
+    });
+};
   return (
     <div>
       <div>
@@ -20,11 +60,17 @@ const Sales = () => {
       </div>
       <div className="flex justify-center mt-5 ">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex gap-14 bg-slate-300 rounded-lg p-5 ">
+          <div className="flex gap-14 bg-slate-300 rounded-lg p-5 px-20">
             <div className="flex items-center">
+              {/* category */}
               <div>
-                <h1 className='ml-1 text-lg font-semibold mb-2'>Select Your Product Category</h1>
-                <select className="select select-bordered w-full max-w-xs">
+                <h1 className="ml-1 text-lg font-semibold mb-2">
+                  Select Your Product Category
+                </h1>
+                <select
+                  onChange={e => setCategory(e.target.value)}
+                  className="select select-bordered w-full max-w-xs"
+                >
                   <option disabled selected>
                     Select Your Product Category
                   </option>
@@ -44,7 +90,7 @@ const Sales = () => {
             <div>
               {/* name */}
               <div className="form-control w-full max-w-xs">
-                <h1 className='ml-1 text-lg '>Name</h1>
+                <h1 className="ml-1 text-lg ">Name </h1>
                 <input
                   type="text"
                   placeholder="Product Name"
@@ -108,7 +154,10 @@ const Sales = () => {
               </div>
               {/*  */}
               <div>
-                <select className="select select-bordered w-full max-w-xs">
+                <select
+                  onChange={e => setPType(e.target.value)}
+                  className="select select-bordered w-full max-w-xs"
+                >
                   <option disabled selected>
                     Product Type
                   </option>
@@ -143,11 +192,21 @@ const Sales = () => {
                 </label>
               </div>
 
-              <input
-                className="btn btn-orange-500 w-full text-white"
-                type="submit"
-                value="ADD"
-              />
+              {category && pType ? (
+                <input
+                  className="btn btn-orange-500 w-full text-white"
+                  type="submit"
+                  value="ADD"
+                />
+              ) : (
+                <input
+                  disabled
+                  className="btn btn-orange-500 w-full text-white tooltip"
+                  type="submit"
+                  value="ADD"
+                  data-tip="hello"
+                />
+              )}
             </div>
           </div>
         </form>
