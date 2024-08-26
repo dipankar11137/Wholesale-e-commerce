@@ -40,7 +40,7 @@ const Buys = () => {
           <select
             value={category}
             onChange={e => setCategory(e.target.value)}
-            className="select select-bordered w-full max-w-xs "
+            className="select h-5 bg-slate-100  w-full  max-w-xs "
           >
             <option value="">All Categories</option>
             {categories.map((cat, index) => (
@@ -50,20 +50,20 @@ const Buys = () => {
             ))}
           </select>
           {/* Search Input */}
-          <div className="flex items-center gap-2 mb-4 bg-white border border-gray-300 rounded mr-20">
+          <div className="flex items-center gap-2 mb-4 bg-slate-300 border border-gray-300 rounded mr-20">
             <input
               type="text"
               placeholder="Search Products..."
               value={searchTerm}
               onChange={e => setSearchTerm(e.target.value)}
-              className="grow outline-none p-2"
+              className="grow outline-none p-2 bg-slate-100"
             />
-            <div className="bg-white p-1 rounded inline-block">
+            <div className="bg-slate-300 p-1 rounded inline-block">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 16 16"
                 fill="currentColor"
-                className="h-4 w-4 opacity-70 bg-white rounded"
+                className="h-4 w-4 opacity-70 bg-slate-300 rounded"
               >
                 <path
                   fillRule="evenodd"

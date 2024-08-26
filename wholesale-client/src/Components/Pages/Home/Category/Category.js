@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Category = () => {
+const Category = ({ setCategory }) => {
   return (
     <div className="mx-16">
       <div className="my-7 text-center text-5xl  font-serif ">
@@ -9,6 +9,7 @@ const Category = () => {
       </div>
       <div className="grid grid-cols-5 gap-10">
         <Link
+          onClick={() => setCategory('Electronics and Mobile Devices')}
           to="/products"
           className="hover:bg-slate-100  shadow-lg  border-b-[1px] border-orange-700 hover:border-b-0  pb-1"
         >
@@ -22,6 +23,7 @@ const Category = () => {
           </h1>
         </Link>
         <Link
+          onClick={() => setCategory('Food and Beverages')}
           to="/products"
           className="hover:bg-slate-100  shadow-lg  border-b-[1px] border-orange-700 hover:border-b-0  pb-1"
         >
@@ -35,6 +37,7 @@ const Category = () => {
           </h1>
         </Link>
         <Link
+          onClick={() => setCategory('Health and Personal Care')}
           to="/products"
           className="hover:bg-slate-100  shadow-lg  border-b-[1px] border-orange-700 hover:border-b-0  pb-1"
         >
@@ -48,6 +51,7 @@ const Category = () => {
           </h1>
         </Link>
         <Link
+          onClick={() => setCategory('Automotive')}
           to="/products"
           className="hover:bg-slate-100  shadow-lg  border-b-[1px] border-orange-700 hover:border-b-0  pb-1"
         >
@@ -59,6 +63,7 @@ const Category = () => {
           <h1 className="text-sm font-serif text-center mt-2">Automotive</h1>
         </Link>
         <Link
+          onClick={() => setCategory('Agricultural Products')}
           to="/products"
           className="hover:bg-slate-100  shadow-lg  border-b-[1px] border-orange-700 hover:border-b-0  pb-1"
         >
@@ -72,6 +77,7 @@ const Category = () => {
           </h1>
         </Link>
         <Link
+          onClick={() => setCategory('Home Appliances and Furniture')}
           to="/products"
           className="hover:bg-slate-100  shadow-lg  border-b-[1px] border-orange-700 hover:border-b-0  pb-1"
         >
@@ -85,6 +91,7 @@ const Category = () => {
           </h1>
         </Link>
         <Link
+          onClick={() => setCategory('Construction Materials')}
           to="/products"
           className="hover:bg-slate-100  shadow-lg  border-b-[1px] border-orange-700 hover:border-b-0  pb-1"
         >
@@ -98,6 +105,7 @@ const Category = () => {
           </h1>
         </Link>
         <Link
+          onClick={() => setCategory('E-commerce')}
           to="/products"
           className="hover:bg-slate-100  shadow-lg  border-b-[1px] border-orange-700 hover:border-b-0  pb-1"
         >
@@ -109,6 +117,7 @@ const Category = () => {
           <h1 className="text-sm font-serif text-center mt-2">E-commerce</h1>
         </Link>
         <Link
+          onClick={() => setCategory('Education and Learning Tools')}
           to="/products"
           className="hover:bg-slate-100  shadow-lg  border-b-[1px] border-orange-700 hover:border-b-0  pb-1"
         >
@@ -122,6 +131,7 @@ const Category = () => {
           </h1>
         </Link>
         <Link
+          onClick={() => setCategory('Textiles and Apparel')}
           to="/products"
           className="hover:bg-slate-100  shadow-lg  border-b-[1px] border-orange-700 hover:border-b-0  pb-1"
         >

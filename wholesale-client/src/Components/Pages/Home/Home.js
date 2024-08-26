@@ -4,7 +4,7 @@ import Footer from "../../Share/Footer";
 import Category from "./Category/Category";
 import SSP from "./SSP/SSP";
 
-const Home = () => {
+const Home = ({ setCategory }) => {
   return (
     <div
       className="bg-cover bg-center bg-no-repeat h-[500px] font-serif"
@@ -29,10 +29,10 @@ const Home = () => {
           </div>
         </Link>
       </div>
-      <Category/>
+      <Category setCategory={setCategory} />
       {/* <Video/> */}
       <SSP />
-      <Footer/>
+      <Footer />
     </div>
   );
 };
