@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Category = ({ setCategory }) => {
   return (
     <div className="mx-16">
-      <div className="my-7 text-center text-5xl  font-serif ">
+      <div className="py-5 mb-5  text-center text-5xl  font-serif text-indigo-900 bg-slate-100">
         Our Product Category
       </div>
       <div className="grid grid-cols-5 gap-10">
