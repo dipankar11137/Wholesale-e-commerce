@@ -6,6 +6,7 @@ import "./App.css";
 import CreateAccount from "./Components/Login/CreateAccount";
 import Login from "./Components/Login/Login";
 import About from "./Components/Pages/About/About";
+import AllProducts from "./Components/Pages/Dashboard/All Product/AllProducts";
 import Dashboard from "./Components/Pages/Dashboard/Dashboard";
 import MyProducts from "./Components/Pages/Dashboard/My Product/MyProducts";
 import Buys from "./Components/Pages/Home/Buy/Buys";
@@ -41,9 +42,8 @@ function App() {
         {/* Dashboard Start */}
         <Route path="/dashboard" element={<Dashboard />}>
           <Route index element={<MyProducts />} />
-          {/* <Route path="bookings" element={<Bookings />} />
-        <Route path="addDoctor" element={<AddDoctor />} />
-        <Route path="manageDoctor" element={<ManageDoctors />} />
+          <Route path="allProduct" element={<AllProducts />} />
+          {/*<Route path="manageDoctor" element={<ManageDoctors />} />
         <Route path="editDoctor/:id" element={<EditDoctor />} />
         <Route path="manageContact" element={<ManageContacts />} />
         <Route path="profile" element={<Profile />} />

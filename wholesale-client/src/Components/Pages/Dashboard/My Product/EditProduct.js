@@ -19,10 +19,10 @@ setLoading(true)
     const updateProduct = {
     
       name: data.name || product.name,
-      category: data.category || product.category,
+      category: category || product.category,
       quantity: data.quantity || product.quantity,
       price: data.price || product.price,
-      pType: data.pType || product.pType,
+      pType: pType || product.pType,
       img: data.img || product.img,
       
     };

@@ -9,8 +9,7 @@ const MyProducts = () => {
   const [products, setProducts] = useState([])
   
   useEffect(() => {
-    // fetch(`http://localhost:5000/emailProduct/${users?.email}`)
-    fetch(`http://localhost:5000/products`)
+    fetch(`http://localhost:5000/emailProduct/${users?.email}`)
       .then(res => res.json())
       .then(data => setProducts(data));
   }, [products, users?.email]);

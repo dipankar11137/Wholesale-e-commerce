@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import {
+  FaCartArrowDown,
   FaShoppingCart,
   FaSyringe,
   FaUserEdit,
-  FaUserFriends,
   FaUserMd,
-  FaUserPlus,
+  FaUserPlus
 } from 'react-icons/fa';
 
 import { Link, Outlet, useLocation } from 'react-router-dom';
@@ -82,7 +82,7 @@ const Dashboard = () => {
                     {' '}
                     <Link
                       to="/dashboard"
-                      className={`  group flex items-center text-xl w-[215px] gap-3.5 font-medium p-2 hover:bg-red-100 rounded-md`}
+                      className={`  group flex items-center text-xl w-[215px] gap-3.5 font-medium p-2 hover:bg-primary rounded-md`}
                     >
                       <div>
                         {React.createElement(FaShoppingCart, {
@@ -113,11 +113,11 @@ const Dashboard = () => {
                   >
                     {' '}
                     <Link
-                      to="/dashboard/addDonner"
-                      className={`  group flex items-center text-xl w-[215px] gap-3.5 font-medium p-2  hover:bg-red-100 rounded-md`}
+                      to="/dashboard/allProduct"
+                      className={`  group flex items-center text-xl w-[215px] gap-3.5 font-medium p-2  hover:bg-primary rounded-md`}
                     >
                       <div>
-                        {React.createElement(FaUserFriends, {
+                        {React.createElement(FaCartArrowDown, {
                           size: '24',
                         })}
                       </div>
@@ -129,7 +129,7 @@ const Dashboard = () => {
                           !open && 'opacity-0 translate-x-28 overflow-hidden '
                         }`}
                       >
-                        Add Donner
+                       All Products
                       </h2>
                     </Link>
                   </div>
@@ -145,7 +145,7 @@ const Dashboard = () => {
                     {' '}
                     <Link
                       to="/dashboard/showDonner"
-                      className={`  group flex items-center text-xl w-[215px] gap-3.5 font-medium p-2  hover:bg-red-100 rounded-md`}
+                      className={`  group flex items-center text-xl w-[215px] gap-3.5 font-medium p-2  hover:bg-primary rounded-md`}
                     >
                       <div>
                         {React.createElement(FaUserEdit, {
@@ -176,7 +176,7 @@ const Dashboard = () => {
                     {' '}
                     <Link
                       to="/dashboard/addDoctor"
-                      className={`  group flex items-center text-xl w-[215px] gap-3.5 font-medium p-2  hover:bg-red-100 rounded-md`}
+                      className={`  group flex items-center text-xl w-[215px] gap-3.5 font-medium p-2  hover:bg-primary rounded-md`}
                     >
                       <div>
                         {React.createElement(FaUserPlus, {
@@ -208,7 +208,7 @@ const Dashboard = () => {
                     {' '}
                     <Link
                       to="/dashboard/manageDoctor"
-                      className={`  group flex items-center text-xl w-[215px]  gap-3.5 font-medium p-2 hover:bg-red-100 rounded-md`}
+                      className={`  group flex items-center text-xl w-[215px]  gap-3.5 font-medium p-2 hover:bg-primary rounded-md`}
                     >
                       <div>
                         {React.createElement(FaUserMd, {
@@ -240,7 +240,7 @@ const Dashboard = () => {
                     {' '}
                     <Link
                       to="/dashboard/ManageVaccine"
-                      className={`  group flex items-center text-xl w-[215px]  gap-3.5 font-medium p-2 hover:bg-red-100 rounded-md`}
+                      className={`  group flex items-center text-xl w-[215px]  gap-3.5 font-medium p-2 hover:bg-primary rounded-md`}
                     >
                       <div>
                         {React.createElement(FaSyringe, {
