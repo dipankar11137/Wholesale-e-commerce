@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import CreateAccount from "./Components/Login/CreateAccount";
 import Login from "./Components/Login/Login";
+import About from "./Components/Pages/About/About";
 import Buys from "./Components/Pages/Home/Buy/Buys";
 import ProductCategory from "./Components/Pages/Home/Buy/ProductCategory";
 import Home from "./Components/Pages/Home/Home";
@@ -26,6 +27,7 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/sales" element={<Sales />}></Route>
         <Route path="/buy" element={<Buys />}></Route>
+        <Route path="/about" element={<About />}></Route>
         <Route
           path="/products"
           element={<ProductCategory category={category} />}

@@ -3,7 +3,7 @@ import React from 'react';
 const PaymentMethod = () => {
   return (
     <div className="bg-slate-200">
-      <div className="p-2 flex justify-center gap-5">
+      <div className="p-5 flex justify-center gap-5">
         <div>
           <img
             className="h-16 w-16 rounded-full"

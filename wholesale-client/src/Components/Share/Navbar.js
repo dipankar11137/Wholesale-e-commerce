@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuthState } from "react-firebase-hooks/auth";
-import auth from "../../firebase.init";
 import { signOut } from "firebase/auth";
-import { FaHome } from "react-icons/fa";
+import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { Link, useNavigate } from "react-router-dom";
+import auth from "../../firebase.init";
 
 const Navbar = () => {
   const [user] = useAuthState(auth);
@@ -18,7 +17,7 @@ const Navbar = () => {
     fetch(`https://boxberry.onrender.com/carBooking/${email}`)
       .then((res) => res.json())
       .then((data) => setBooking(data));
-  }, [booking]);
+  }, [booking,email]);
 
   const handleBook = () => {
     navigate("/myOrders");
@@ -26,28 +25,25 @@ const Navbar = () => {
 
   const menuItems = (
     <>
-      <li className="font-bold hover:text-orange-400  text-xl">
-        <Link to="/">
-          <FaHome />
-        </Link>
-      </li>
-      <li className="font-bold hover:text-orange-400">
-        <Link to="/blogs">Blogs</Link>
-      </li>
+     
+
       {user && (
-        <li className="font-bold hover:text-orange-400">
+        <li className=" hover:text-orange-400">
           <Link to="/myOrders">My Orders</Link>
         </li>
       )}
-      <li className="font-bold hover:text-orange-400">
+      {/* <li className=" hover:text-orange-400">
         <Link to="/showAllReview">Reviews</Link>
+      </li> */}
+      <li className=" hover:text-orange-400">
+        <Link to="/about">About</Link>
       </li>
-
       {user && (
-        <li className="font-bold hover:text-orange-400">
+        <li className=" hover:text-orange-400">
           <Link to="/dashboard">Dashboard</Link>
         </li>
       )}
+
       {/* <li className=" font-bold">
         {user ? (
           <button className=" font-bold" onClick={logout}>
@@ -60,7 +56,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="  navbar dark:bg-gray-800 dark:border-gray-700  text-white ">
+    <div className="  navbar dark:bg-gray-800 dark:border-gray-700  text-white font-serif">
       <div className="navbar-start ">
         <div className="dropdown">
           <label tabIndex="0" className="btn btn-ghost lg:hidden">
