@@ -9,10 +9,11 @@ const MyProducts = () => {
   const [products, setProducts] = useState([])
   
   useEffect(() => {
-    fetch(`http://localhost:5000/emailProduct/${users?.email}`)
+    // fetch(`http://localhost:5000/emailProduct/${users?.email}`)
+    fetch(`http://localhost:5000/products`)
       .then(res => res.json())
       .then(data => setProducts(data));
-  }, [products, users.email]);
+  }, [products, users?.email]);
 
     const handleDelete = id => {
       const proceed = window.confirm('Are You Sure ?');
@@ -53,12 +54,12 @@ const MyProducts = () => {
               <th className="bg-secondary  text-xl border-r-[1px] font-thin">
                 Price
               </th>
-              {/* <th className="bg-secondary text-xl border-r-[1px] font-thin">
-                Payment
-              </th> */}
-              <th className="bg-secondary  text-xl border-r-[1px] font-thin">
-                Status
+              <th className="bg-secondary text-xl border-r-[1px] font-thin">
+                Edit
               </th>
+              {/* <th className="bg-secondary  text-xl border-r-[1px] font-thin">
+                Status
+              </th> */}
               <th className="bg-secondary text-xl font-thin">Remove</th>
             </tr>
           </thead>
