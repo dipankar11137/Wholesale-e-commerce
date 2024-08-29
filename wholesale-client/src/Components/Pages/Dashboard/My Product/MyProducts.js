@@ -1,17 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { toast } from 'react-toastify';
 import auth from '../../../../firebase.init';
 import MyProduct from './MyProduct';
 
 const MyProducts = () => {
   const [users] = useAuthState(auth);
-  const [products, setProducts] = useState([5,5,5,5])
+  const [products, setProducts] = useState([])
   
   useEffect(() => {
-    fetch(`http://localhost:5000/emailProduct/${users.email}`)
+    fetch(`http://localhost:5000/emailProduct/${users?.email}`)
       .then(res => res.json())
       .then(data => setProducts(data));
   }, [products, users.email]);
+
+    const handleDelete = id => {
+      const proceed = window.confirm('Are You Sure ?');
+      if (proceed) {
+        const url = `http://localhost:5000/product/${id}`;
+        fetch(url, {
+          method: 'DELETE',
+        })
+          .then(res => res.json())
+          .then(data => {
+            const remaining = products.filter(product => product._id !== id);
+            setProducts(remaining);
+            toast.success('Successfully Delete ');
+          });
+      }
+    };
 
   return (
     <div className="font-serif">
@@ -51,7 +68,7 @@ const MyProducts = () => {
                 key={product._id}
                 product={product}
                 index={index + 1}
-                // handleDelete={handleDelete}
+                handleDelete={handleDelete}
               ></MyProduct>
             ))}
           </tbody>
