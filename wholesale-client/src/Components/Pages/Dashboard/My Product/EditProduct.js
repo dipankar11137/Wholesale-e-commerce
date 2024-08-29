@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 const EditProduct = ({ product, closeModal }) => {
   const [category, setCategory] = useState('');
   const [pType, setPType] = useState('');
+    const [loading, setLoading] = useState(false);
   const {
     register,
     formState: { errors },
@@ -13,14 +14,44 @@ const EditProduct = ({ product, closeModal }) => {
   } = useForm();
 
   const onSubmit = data => {
-    data.category = category;
-    data.pType = pType;
-    console.log(product._id);
-    // Reset form after submission
-    reset();
-    toast.success("dado")
-    // Close the modal after updating
-    closeModal();
+setLoading(true)
+  
+    const updateProduct = {
+    
+      name: data.name || product.name,
+      category: data.category || product.category,
+      quantity: data.quantity || product.quantity,
+      price: data.price || product.price,
+      pType: data.pType || product.pType,
+      img: data.img || product.img,
+      
+    };
+  
+      fetch(`http://localhost:5000/updateProduct/${product?._id}`, {
+        method: 'PUT',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify(updateProduct),
+      })
+        .then(res => res.json())
+        .then(data => {
+          setLoading(false);
+          toast.success('Update Successful');
+          setLoading(false)
+          closeModal();
+         
+        });
+   
+
+    // data.category = category;
+    // data.pType = pType;
+    // console.log(product._id);
+    // // Reset form after submission
+    // reset();
+    // toast.success("dado")
+    // // Close the modal after updating
+    // closeModal();
   };
 
   return (
