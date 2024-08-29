@@ -15,7 +15,7 @@ const Sales = () => {
      handleSubmit,
      reset,
   } = useForm();
-  
+
   const onSubmit = data => {
     
   const image = data.image[0];
@@ -32,7 +32,9 @@ const Sales = () => {
       const updateUrl = {
         ...data,
         category,
-     pType,
+        pType,
+        user,
+        email:user.email,
         img: image,
       };
 

@@ -6,6 +6,8 @@ import "./App.css";
 import CreateAccount from "./Components/Login/CreateAccount";
 import Login from "./Components/Login/Login";
 import About from "./Components/Pages/About/About";
+import Dashboard from "./Components/Pages/Dashboard/Dashboard";
+import MyProducts from "./Components/Pages/Dashboard/My Product/MyProducts";
 import Buys from "./Components/Pages/Home/Buy/Buys";
 import ProductCategory from "./Components/Pages/Home/Buy/ProductCategory";
 import Home from "./Components/Pages/Home/Home";
@@ -17,8 +19,9 @@ function App() {
   const [category,setCategory]=useState([])
   return (
     <div>
-      {/* <CreateAccount /> */}
+      {/* <div className="fixed top-0 z-50 duration-1000 w-full"> */}
       <Navbar />
+      {/* </div> */}
 
       <Routes>
         <Route path="/" element={<Home setCategory={setCategory} />}></Route>
@@ -34,8 +37,23 @@ function App() {
         ></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/*" element={<NotFound />}></Route>
+
+        {/* Dashboard Start */}
+        <Route path="/dashboard" element={<Dashboard />}>
+          <Route index element={<MyProducts />} />
+          {/* <Route path="bookings" element={<Bookings />} />
+        <Route path="addDoctor" element={<AddDoctor />} />
+        <Route path="manageDoctor" element={<ManageDoctors />} />
+        <Route path="editDoctor/:id" element={<EditDoctor />} />
+        <Route path="manageContact" element={<ManageContacts />} />
+        <Route path="profile" element={<Profile />} />
+        <Route path="addDonner" element={<AddDonner />} />
+        <Route path="showDonner" element={<ShowDonners />} />
+        <Route path="manageVaccine" element={<ManageVaccine />} /> */}
+        </Route>
+        {/* Dashboard End */}
+        {/* <Footer /> */}
       </Routes>
-      {/* <Footer /> */}
       <ToastContainer />
     </div>
   );
