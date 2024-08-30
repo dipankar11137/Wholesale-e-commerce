@@ -158,7 +158,7 @@ const Sales = () => {
               <div>
                 <select
                   onChange={e => setPType(e.target.value)}
-                  className="select select-bordered w-full max-w-xs"
+                  className="select select-bordered w-full max-w-xs font-normal"
                 >
                   <option disabled selected>
                     Product Type

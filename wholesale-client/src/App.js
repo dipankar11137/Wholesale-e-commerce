@@ -43,8 +43,8 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />}>
           <Route index element={<MyProducts />} />
           <Route path="allProduct" element={<AllProducts />} />
-          {/*<Route path="manageDoctor" element={<ManageDoctors />} />
-        <Route path="editDoctor/:id" element={<EditDoctor />} />
+          <Route path="addProduct" element={<Sales />} />
+          {/* <Route path="editDoctor/:id" element={<EditDoctor />} />
         <Route path="manageContact" element={<ManageContacts />} />
         <Route path="profile" element={<Profile />} />
         <Route path="addDonner" element={<AddDonner />} />

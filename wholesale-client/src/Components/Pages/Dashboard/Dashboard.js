@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import {
   FaCartArrowDown,
+  FaCartPlus,
   FaShoppingCart,
   FaSyringe,
-  FaUserEdit,
   FaUserMd,
   FaUserPlus
 } from 'react-icons/fa';
@@ -129,7 +129,7 @@ const Dashboard = () => {
                           !open && 'opacity-0 translate-x-28 overflow-hidden '
                         }`}
                       >
-                       All Products
+                        All Products
                       </h2>
                     </Link>
                   </div>
@@ -144,11 +144,11 @@ const Dashboard = () => {
                   >
                     {' '}
                     <Link
-                      to="/dashboard/showDonner"
+                      to="/dashboard/addProduct"
                       className={`  group flex items-center text-xl w-[215px] gap-3.5 font-medium p-2  hover:bg-primary rounded-md`}
                     >
                       <div>
-                        {React.createElement(FaUserEdit, {
+                        {React.createElement(FaCartPlus, {
                           size: '24',
                         })}
                       </div>
@@ -160,7 +160,7 @@ const Dashboard = () => {
                           !open && 'opacity-0 translate-x-28 overflow-hidden '
                         }`}
                       >
-                        Manage Donner
+                        Add Product
                       </h2>
                     </Link>
                   </div>
