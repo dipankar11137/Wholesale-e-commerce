@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Buy from './Buy';
 
 const Buys = () => {
@@ -6,6 +7,7 @@ const Buys = () => {
   const [searchTerm, setSearchTerm] = useState(''); // State for search term
   const [category, setCategory] = useState(''); // State for selected category
   const [categories, setCategories] = useState([]); // State for categories
+  const navigator=useNavigate()
 
   // Fetch products and categories
   useEffect(() => {
@@ -29,10 +31,14 @@ const Buys = () => {
     );
   });
 
+  const handleBuy = id => {
+    navigator(`/buyNow/${id}`)
+  }
+
   return (
     <div className="mx-20">
       <div className="flex justify-between items-center bg-slate-900 mt-[1px] p-2 rounded mb-5">
-        <div>
+        <div onClick={() => setCategory('')} className="cursor-pointer">
           <h1 className="text-white ml-10 text-4xl font-serif">All Products</h1>
         </div>
         <div className="flex gap-10 ">
@@ -79,7 +85,7 @@ const Buys = () => {
       {/* Product Grid */}
       <div className="grid grid-cols-4 gap-10">
         {filteredProducts.map(product => (
-          <Buy key={product._id} product={product} />
+          <Buy key={product._id} product={product} handleBuy={handleBuy} />
         ))}
       </div>
     </div>

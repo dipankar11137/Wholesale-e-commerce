@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Buy = ({product}) => {
+const Buy = ({ product, handleBuy }) => {
   return (
     <div className="card card-compact bg-base-100 w-64 shadow-xl">
       <figure>
@@ -12,10 +12,18 @@ const Buy = ({product}) => {
           Quantity: <span className="font-semibold">{product?.quantity}</span>
         </p>
         <p>
-          Price: <span className="font-semibold text-primary">{product?.price} BDT</span>
+          Price:{' '}
+          <span className="font-semibold text-primary">
+            {product?.price} BDT
+          </span>
         </p>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary btn-sm">Buy Now</button>
+          <button
+            onClick={() => handleBuy(product._id)}
+            className="btn btn-primary btn-sm"
+          >
+            Buy Now
+          </button>
         </div>
       </div>
     </div>

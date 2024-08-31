@@ -9,6 +9,7 @@ import About from "./Components/Pages/About/About";
 import AllProducts from "./Components/Pages/Dashboard/All Product/AllProducts";
 import Dashboard from "./Components/Pages/Dashboard/Dashboard";
 import MyProducts from "./Components/Pages/Dashboard/My Product/MyProducts";
+import BuyNow from "./Components/Pages/Home/Buy/BuyNow";
 import Buys from "./Components/Pages/Home/Buy/Buys";
 import ProductCategory from "./Components/Pages/Home/Buy/ProductCategory";
 import Home from "./Components/Pages/Home/Home";
@@ -31,6 +32,7 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/sales" element={<Sales />}></Route>
         <Route path="/buy" element={<Buys />}></Route>
+        <Route path="/buyNow/:id" element={<BuyNow />}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route
           path="/products"

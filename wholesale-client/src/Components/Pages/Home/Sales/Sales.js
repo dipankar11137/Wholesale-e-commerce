@@ -38,7 +38,7 @@ const Sales = () => {
         img: image,
       };
 
-      console.log('aci', updateUrl);
+      // console.log('aci', updateUrl);
       fetch(`http://localhost:5000/products`, {
         method: 'POST',
         headers: {
@@ -163,7 +163,7 @@ const Sales = () => {
                   <option disabled selected>
                     Product Type
                   </option>
-                  <option>Pieces</option>
+                  <option>Piece</option>
                   <option>Kg</option>
                 </select>
               </div>
