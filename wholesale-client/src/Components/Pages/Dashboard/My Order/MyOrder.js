@@ -1,6 +1,12 @@
 import React from 'react';
+import { FaChevronDown } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const MyOrder = ({ product, handleDelete, index }) => {
+    const navigate = useNavigate();
+   const handlePayment = id => {
+     navigate(`/dashboard/payment/${id}`);
+   };
   return (
     <tr className="text-center text-slate-800">
       <th className="bg-slate-200 border-r-[1px] border-slate-900">{index}</th>
@@ -38,8 +44,43 @@ const MyOrder = ({ product, handleDelete, index }) => {
       <td className="bg-slate-200 border-r-[1px] border-slate-900 text-end">
         <h1 className="ml-3 font-mono ">{product?.totalPrice}.00 BDT</h1>
       </td>
-      <td className="bg-slate-200 border-r-[1px] border-slate-900">
-        <h1 className="ml-3 font-mono ">{product?.price}</h1>
+      <td className="bg-slate-200 border-r-[1px] border-slate-900 ">
+        {product.payment ? (
+          <div className="flex justify-center items-center">
+            <h1 className="  mr-4">Paid</h1>{' '}
+            {/* The button to open modal */}
+            <label
+              htmlFor="my_modal_6"
+              className="mt-1 text-2xl flex items-center"
+            >
+              <FaChevronDown className="text-xs cursor-pointer" />
+            </label>
+            {/* Put this part before </body> tag */}
+            <input type="checkbox" id="my_modal_6" className="modal-toggle" />
+            <div className="modal">
+              <div className="modal-box bg-white">
+                <div>
+                  <img
+                    src="https://img.freepik.com/free-vector/thank-you-placard-concept-illustration_114360-13436.jpg"
+                    alt=""
+                  />
+                </div>
+                <div className="modal-action">
+                  <label htmlFor="my_modal_6" className="btn">
+                    Close!
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <button
+            onClick={() => handlePayment(product?._id)}
+            className="bg-lime-600 px-3 py-1 rounded-md uppercase text-white  hover:bg-lime-500"
+          >
+            Payment
+          </button>
+        )}
       </td>
 
       <td className="bg-slate-200 border-r-[1px] border-slate-900">

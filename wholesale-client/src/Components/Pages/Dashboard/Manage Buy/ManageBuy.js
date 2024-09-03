@@ -38,7 +38,7 @@ const ManageBuy = ({ product, handleDelete, index }) => {
         <h1 className="ml-3 font-mono ">{product?.totalPrice}.00 BDT</h1>
       </td>
       <td className="bg-slate-200 border-r-[1px] border-slate-900">
-        <h1 className="ml-3 font-mono ">{product?.price}</h1>
+        <h1 className="ml-3 font-mono ">{product.payment?<h className="text-green-700 font-semibold">Paid</h>:<h1 className='text-red-600 font-semibold'>Unpaid</h1>}</h1>
       </td>
 
       <td className="bg-slate-200 border-r-[1px] border-slate-900">

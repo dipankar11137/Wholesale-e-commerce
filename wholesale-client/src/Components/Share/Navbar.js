@@ -8,10 +8,20 @@ const Navbar = () => {
   const [user] = useAuthState(auth);
   const email = user?.email;
   const navigate = useNavigate();
+  const [products, setProducts] = useState([]);
   const [booking, setBooking] = useState([]);
+
   const logout = () => {
     signOut(auth);
   };
+ 
+ 
+
+    useEffect(() => {
+      fetch(`http://localhost:5000/buyEmail/${user?.email}`)
+        .then(res => res.json())
+        .then(data => setProducts(data));
+    }, [products, user?.email]);
 
   useEffect(() => {
     fetch(`https://boxberry.onrender.com/carBooking/${email}`)
@@ -32,9 +42,7 @@ const Navbar = () => {
           <Link to="/myOrders">My Orders</Link>
         </li>
       )}
-      {/* <li className=" hover:text-orange-400">
-        <Link to="/showAllReview">Reviews</Link>
-      </li> */}
+     
       <li className=" hover:text-orange-400 ">
         <Link to="/about">About</Link>
       </li>
@@ -44,15 +52,6 @@ const Navbar = () => {
         </li>
       )}
 
-      {/* <li className=" font-bold">
-        {user ? (
-          <button className=" font-bold" onClick={logout}>
-            Sign Out
-          </button>
-        ) : (
-          <Link to="/login">Login</Link>
-        )}
-      </li> */}
     </>
   );
   return (
@@ -87,7 +86,7 @@ const Navbar = () => {
           className="btn btn-ghost normal-case font-bold lg:text-3xl  sm:text-sm text-amber-500"
         >
           <img className="h-12 mr-2" src="" alt="" />
-          Logo/name
+          Wholesale
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex lg:pr-36 ml-40">
@@ -116,7 +115,7 @@ const Navbar = () => {
               />
             </svg>
             <span className="badge badge-sm indicator-item">
-              {booking.length}
+              {products.length}
             </span>
           </div>
         </label>

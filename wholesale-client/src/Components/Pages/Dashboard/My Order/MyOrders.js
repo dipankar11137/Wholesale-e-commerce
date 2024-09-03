@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
+import auth from '../../../../firebase.init';
 import MyOrder from './MyOrder';
 
 const MyOrders = () => {
+    const [users] = useAuthState(auth);
    const [products, setProducts] = useState([]);
 
    useEffect(() => {
-     fetch(`http://localhost:5000/buy`)
+     fetch(`http://localhost:5000/buyEmail/${users?.email}`)
        .then(res => res.json())
        .then(data => setProducts(data));
-   }, [products]);
+   }, [products, users?.email]);
 
    const handleDelete = id => {
      const proceed = window.confirm('Are You Sure ?');
      if (proceed) {
-       const url = `http://localhost:5000/product/${id}`;
+       const url = `http://localhost:5000/buy/${id}`;
        fetch(url, {
          method: 'DELETE',
        })
