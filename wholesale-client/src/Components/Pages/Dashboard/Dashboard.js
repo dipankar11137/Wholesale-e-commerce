@@ -3,10 +3,9 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import {
   FaCartArrowDown,
   FaCartPlus,
+  FaLuggageCart,
+  FaOpencart,
   FaShoppingCart,
-  FaSyringe,
-  FaUserMd,
-  FaUserPlus
 } from 'react-icons/fa';
 
 import { Link, Outlet, useLocation } from 'react-router-dom';
@@ -164,7 +163,7 @@ const Dashboard = () => {
                       </h2>
                     </Link>
                   </div>
-                  {/* add doctor */}
+                  {/* my buy*/}
                   <div
                     onClick={() => setSelectedButton('Button 5')}
                     className={
@@ -175,11 +174,11 @@ const Dashboard = () => {
                   >
                     {' '}
                     <Link
-                      to="/dashboard/addDoctor"
+                      to="/dashboard/myOrder"
                       className={`  group flex items-center text-xl w-[215px] gap-3.5 font-medium p-2  hover:bg-primary rounded-md`}
                     >
                       <div>
-                        {React.createElement(FaUserPlus, {
+                        {React.createElement(FaLuggageCart, {
                           size: '24',
                         })}
                       </div>
@@ -191,28 +190,27 @@ const Dashboard = () => {
                           !open && 'opacity-0 translate-x-28 overflow-hidden '
                         }`}
                       >
-                        Add Doctor
+                       My Order
                       </h2>
                     </Link>
                   </div>
-
-                  {/* Manage Porduct */}
+                  {/* manage buy*/}
                   <div
-                    onClick={() => setSelectedButton('Button 6')}
+                    onClick={() => setSelectedButton('Button 55')}
                     className={
-                      selectedButton === 'Button 6'
-                        ? 'bg-white w-[215px] text-black rounded-lg '
+                      selectedButton === 'Button 55'
+                        ? 'bg-white text-black w-[215px] rounded-lg'
                         : ''
                     }
                   >
                     {' '}
                     <Link
-                      to="/dashboard/manageDoctor"
-                      className={`  group flex items-center text-xl w-[215px]  gap-3.5 font-medium p-2 hover:bg-primary rounded-md`}
+                      to="/dashboard/manageBuy"
+                      className={`  group flex items-center text-xl w-[215px] gap-3.5 font-medium p-2  hover:bg-primary rounded-md`}
                     >
                       <div>
-                        {React.createElement(FaUserMd, {
-                          size: '20',
+                        {React.createElement(FaOpencart, {
+                          size: '24',
                         })}
                       </div>
                       <h2
@@ -220,43 +218,10 @@ const Dashboard = () => {
                           transitionDelay: `${0 + 3}00ms`,
                         }}
                         className={`whitespace-pre duration-500 ${
-                          !open &&
-                          'opacity-0 translate-x-28 overflow-hidden w-[215px]'
+                          !open && 'opacity-0 translate-x-28 overflow-hidden '
                         }`}
                       >
-                        Manage Doctor
-                      </h2>
-                    </Link>
-                  </div>
-                  {/* Manage Vaccine*/}
-                  <div
-                    onClick={() => setSelectedButton('Button 7')}
-                    className={
-                      selectedButton === 'Button 7'
-                        ? 'bg-white w-[215px] text-black rounded-lg '
-                        : ''
-                    }
-                  >
-                    {' '}
-                    <Link
-                      to="/dashboard/ManageVaccine"
-                      className={`  group flex items-center text-xl w-[215px]  gap-3.5 font-medium p-2 hover:bg-primary rounded-md`}
-                    >
-                      <div>
-                        {React.createElement(FaSyringe, {
-                          size: '20',
-                        })}
-                      </div>
-                      <h2
-                        style={{
-                          transitionDelay: `${0 + 3}00ms`,
-                        }}
-                        className={`whitespace-pre duration-500 ${
-                          !open &&
-                          'opacity-0 translate-x-28 overflow-hidden w-[215px]'
-                        }`}
-                      >
-                        Manage Vaccine
+                        Manage Buy
                       </h2>
                     </Link>
                   </div>

@@ -8,6 +8,8 @@ import Login from "./Components/Login/Login";
 import About from "./Components/Pages/About/About";
 import AllProducts from "./Components/Pages/Dashboard/All Product/AllProducts";
 import Dashboard from "./Components/Pages/Dashboard/Dashboard";
+import ManageBuys from "./Components/Pages/Dashboard/Manage Buy/ManageBuys";
+import MyOrders from "./Components/Pages/Dashboard/My Order/MyOrders";
 import MyProducts from "./Components/Pages/Dashboard/My Product/MyProducts";
 import BuyNow from "./Components/Pages/Home/Buy/BuyNow";
 import Buys from "./Components/Pages/Home/Buy/Buys";
@@ -46,12 +48,9 @@ function App() {
           <Route index element={<MyProducts />} />
           <Route path="allProduct" element={<AllProducts />} />
           <Route path="addProduct" element={<Sales />} />
-          {/* <Route path="editDoctor/:id" element={<EditDoctor />} />
-        <Route path="manageContact" element={<ManageContacts />} />
-        <Route path="profile" element={<Profile />} />
-        <Route path="addDonner" element={<AddDonner />} />
-        <Route path="showDonner" element={<ShowDonners />} />
-        <Route path="manageVaccine" element={<ManageVaccine />} /> */}
+          <Route path="manageBuy" element={<ManageBuys />} />
+          <Route path="myOrder" element={<MyOrders />} />
+      
         </Route>
         {/* Dashboard End */}
         {/* <Footer /> */}

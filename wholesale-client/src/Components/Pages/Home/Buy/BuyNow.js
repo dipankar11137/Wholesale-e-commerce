@@ -10,6 +10,7 @@ const BuyNow = () => {
   const [product, setProduct] = useState({})
   const [orderQuantity, setOrderQuantity] = useState('')
   const [customerName, setCustomerName] = useState('')
+  const [date, setDate] = useState('')
   const [phone, setPhone] = useState('')
   const [address, setAddress] = useState('')
   const totalPrice = orderQuantity* product?.price;
@@ -31,7 +32,8 @@ const BuyNow = () => {
       email:user?.email,
       orderQuantity,
       totalPrice,
-    product,
+      product,
+    date
      
     };
      fetch(`http://localhost:5000/buy`, {
@@ -101,6 +103,13 @@ const BuyNow = () => {
               />
             </div>
             <div className="mt-3 ">
+              <input
+                onChange={e => setDate(e.target.value)}
+                type="date"
+                className="input input-bordered bg-white w-full "
+              />
+            </div>
+            <div className="mt-3 ">
               <textarea
                 onChange={e => setAddress(e.target.value)}
                 type="number"
@@ -130,20 +139,12 @@ const BuyNow = () => {
               />
             </div>
 
-            {/* <div className="mt-5">
-              {orderQuantity > 29 ? (
-                <button className="btn w-full">Submit</button>
-              ) : (
-                <button disabled className="btn w-full">
-                  Submit
-                </button>
-              )}
-            </div> */}
+          
           </div>
         </div>
         {/* total price */}
 
-        {orderQuantity > 29 && (
+        {orderQuantity > 29 && date && (
           <div className="w-[300px] bg-slate-600 rounded-md p-5 text-indigo-50 h-[300px]">
             <h1 className="text-center border-b-[1px] text-2xl font-semibold">
               Total Price
