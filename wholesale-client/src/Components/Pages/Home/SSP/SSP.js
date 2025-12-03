@@ -1,4 +1,3 @@
-import React from 'react';
 
 const SSP = () => {
   return (
@@ -20,7 +19,7 @@ const SSP = () => {
         <div>
           <img
             className="h-48"
-            src="https://eticket.railway.gov.bd/v2/assets/img/home/select.svg"
+            src="https://cdn-icons-png.flaticon.com/512/1598/1598638.png"
             alt=""
           />
 
@@ -30,7 +29,7 @@ const SSP = () => {
         <div>
           <img
             className="h-48"
-            src="https://eticket.railway.gov.bd/v2/assets/img/home/pay.svg"
+            src="https://static.vecteezy.com/system/resources/thumbnails/054/300/250/small/payment-3d-icon-3d-render-payment-icon-png.png"
             alt=""
           />
 

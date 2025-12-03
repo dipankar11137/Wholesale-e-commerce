@@ -1,4 +1,3 @@
-import React from "react";
 import {
   useCreateUserWithEmailAndPassword,
   useSignInWithGoogle,
@@ -208,11 +207,11 @@ const CreateAccount = () => {
                   {/* trade id */}
                   <div className="form-control w-full max-w-xs">
                     <label className="label">
-                      <span className="label-text">Trade Id</span>
+                      <span className="label-text">Trade Id / Nid Number</span>
                     </label>
                     <input
                       type="text"
-                      placeholder="tradeId"
+                      placeholder="TradeId / Nid Number"
                       className="input input-bordered bg-white w-full max-w-xs"
                       {...register('tradeId', {
                         required: {

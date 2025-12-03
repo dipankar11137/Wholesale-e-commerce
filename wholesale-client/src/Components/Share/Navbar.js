@@ -1,5 +1,5 @@
 import { signOut } from "firebase/auth";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
@@ -35,23 +35,23 @@ const Navbar = () => {
 
   const menuItems = (
     <>
-     
-
       {user && (
         <li className=" hover:text-orange-400">
           <Link to="/myOrders">My Orders</Link>
         </li>
       )}
-     
+
       <li className=" hover:text-orange-400 ">
         <Link to="/about">About</Link>
+      </li>
+      <li className=" hover:text-orange-400 ">
+        <Link to="/contact">Contact</Link>
       </li>
       {user && (
         <li className=" hover:text-orange-400">
           <Link to="/dashboard">Dashboard</Link>
         </li>
       )}
-
     </>
   );
   return (
@@ -86,7 +86,7 @@ const Navbar = () => {
           className="btn btn-ghost normal-case font-bold lg:text-3xl  sm:text-sm text-amber-500"
         >
           <img className="h-12 mr-2" src="" alt="" />
-          Wholesale
+          Wholesale 
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex lg:pr-36 ml-40">

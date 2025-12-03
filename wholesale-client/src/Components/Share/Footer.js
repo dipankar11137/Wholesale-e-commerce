@@ -1,14 +1,32 @@
-import React from "react";
 
 const Footer = () => {
   return (
     <footer className="footer footer-center p-10 dark:bg-gray-800 dark:border-gray-700  text-white  rounded">
-      <div className="grid grid-flow-col gap-4">
-        <a className="link link-hover">About us</a>
-        <a className="link link-hover">Contact</a>
-        <a className="link link-hover">Jobs</a>
-        <a className="link link-hover">Press kit</a>
+      <div className="flex flex-col items-center gap-1">
+        <p className="text-xl font-semibold flex items-center gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-6 h-6 text-primary"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M3 5l7 7-7 7M13 5l7 7-7 7"
+            />
+          </svg>
+          Hotline Support:{' '}
+          <span className="text-primary">+880 1700 000 000</span>
+        </p>
+
+        <p className="text-xs opacity-80 tracking-wide">
+          Available 24/7 for emergency support
+        </p>
       </div>
+    
       <div>
         <div className="grid grid-flow-col gap-4">
           <a>
@@ -46,11 +64,14 @@ const Footer = () => {
           </a>
         </div>
       </div>
+
       <div>
-        <p>Copyright © 2024 </p>
+        <p>Copyright © 2025 </p>
       </div>
     </footer>
   );
 };
 
 export default Footer;
+
+

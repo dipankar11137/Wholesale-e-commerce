@@ -129,7 +129,7 @@ const Login = () => {
             </form>
             <p>
               <small>
-                New to e-commerce?{" "}
+                New to wholesales?{" "}
                 <Link to="/createAccount" className="text-orange-600 font-bold">
                   Create New Account
                 </Link>

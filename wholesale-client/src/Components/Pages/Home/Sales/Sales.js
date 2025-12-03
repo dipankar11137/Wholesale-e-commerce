@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import useUser from '../../../../hooks/useUser';
@@ -189,6 +189,28 @@ const Sales = () => {
                   {errors.image?.type === 'required' && (
                     <span className="label-text-alt text-red-500">
                       {errors?.image?.message}
+                    </span>
+                  )}
+                </label>
+              </div>
+
+              {/* Product description */}
+              <div className="form-control w-full max-w-xs ">
+                <textarea
+                  type="number"
+                  placeholder="Product description"
+                  className="input input-bordered bg-white w-[300px] h-16 pt-1"
+                  {...register('description', {
+                    required: {
+                      value: true,
+                      message: 'Description  is Required',
+                    },
+                  })}
+                />
+                <label className="label">
+                  {errors.description?.type === 'required' && (
+                    <span className="label-text-alt text-red-500">
+                      {errors.description.message}
                     </span>
                   )}
                 </label>

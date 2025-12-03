@@ -1,3 +1,5 @@
+
+
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import {
@@ -10,7 +12,6 @@ import {
 
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import auth from '../../../firebase.init';
-
 
 const Dashboard = () => {
   const [user] = useAuthState(auth);
@@ -42,7 +43,7 @@ const Dashboard = () => {
             <section className="flex ">
               <div
                 className={` ${
-                  open ? 'w-60' : 'w-20 '
+                  open ? 'w-60 ' : 'w-20'
                 } bg-secondary h-screen p-5  text-white pt-8 relative duration-300`}
               >
                 <img
@@ -52,6 +53,7 @@ const Dashboard = () => {
                   onClick={() => setOpen(!open)}
                   alt=""
                 />
+
                 <div className="flex gap-x-4 items-center">
                   <div onClick={() => setSelectedButton('Button 10')}>
                     {' '}
@@ -68,7 +70,9 @@ const Dashboard = () => {
                   </div>
                 </div>
 
-                <div className="mt-4 flex flex-col gap-4 relative">
+                <div className={`mt-4 flex flex-col gap-4 relative ${
+                    !open ? 'pt-14' : 'pt-0'
+                  }`}>
                   {/* Dashboard */}
                   <div
                     onClick={() => setSelectedButton('Button 10')}
@@ -190,7 +194,7 @@ const Dashboard = () => {
                           !open && 'opacity-0 translate-x-28 overflow-hidden '
                         }`}
                       >
-                       My Order
+                        My Order
                       </h2>
                     </Link>
                   </div>

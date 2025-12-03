@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+
+import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
 import auth from '../../../../firebase.init';
@@ -35,6 +36,7 @@ const MyProducts = () => {
       <h1 className="text-center text-4xl py-3 mt-[1px]  font-semibold text-indigo-50 bg-slate-600">
         My Product
       </h1>
+     
 
       <div className="overflow-x-auto mt-3 mx-5">
         <table className="table  w-full text-white ">
@@ -63,19 +65,20 @@ const MyProducts = () => {
             </tr>
           </thead>
           <tbody>
-            {products.map((product, index) => (
-              <MyProduct
-                key={product._id}
-                product={product}
-                index={index + 1}
-                handleDelete={handleDelete}
-              ></MyProduct>
-            ))}
+            {products
+              .slice()
+              .reverse()
+              .map((product, index) => (
+                <MyProduct
+                  key={product._id}
+                  product={product}
+                  index={index + 1}
+                  handleDelete={handleDelete}
+                ></MyProduct>
+              ))}
           </tbody>
         </table>
       </div>
-
- 
     </div>
   );
 };

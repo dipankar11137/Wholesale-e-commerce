@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import ManageBuy from './ManageBuy';
 
@@ -63,7 +63,7 @@ const ManageBuys = () => {
             </tr>
           </thead>
           <tbody>
-            {products.map((product, index) => (
+            {products.slice().reverse().map((product, index) => (
               <ManageBuy
                 key={product._id}
                 product={product}

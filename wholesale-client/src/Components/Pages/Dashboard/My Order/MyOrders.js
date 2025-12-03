@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
 import auth from '../../../../firebase.init';
@@ -41,22 +41,25 @@ const MyOrders = () => {
             <tr className="text-3xl bg-slate-900  text-center">
               <th className="bg-secondary text-xl border-r-[1px] "></th>
               <th className="bg-secondary text-lg border-r-[1px] font-thin">
-                Product Name
+                Product <br /> Name
               </th>
               <th className="bg-secondary text-lg border-r-[1px] font-thin">
-                Seller Name
+                Seller <br /> Name
               </th>
               <th className="bg-secondary text-lg border-r-[1px] font-thin">
-                Buyer Name
+                Buyer <br /> Name
               </th>
               <th className="bg-secondary  text-lg border-r-[1px] font-thin">
-                date
+               delivery <br /> date
               </th>
               <th className="bg-secondary text-lg border-r-[1px] font-thin">
                 Quantity
               </th>
               <th className="bg-secondary  text-lg border-r-[1px] font-thin">
                 Price
+              </th>
+              <th className="bg-secondary  text-lg border-r-[1px] font-thin">
+                Delivery <br /> Charge
               </th>
               <th className="bg-secondary text-lg border-r-[1px] font-thin">
                 Payment
@@ -66,7 +69,7 @@ const MyOrders = () => {
             </tr>
           </thead>
           <tbody>
-            {products.map((product, index) => (
+            {products.slice().reverse().map((product, index) => (
               <MyOrder
                 key={product._id}
                 product={product}

@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Buy from './Buy';
 
 const ProductCategory = ({ category }) => {
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const navigation=useNavigate();
 
   useEffect(() => {
     fetch(`http://localhost:5000/productCategory/${category}`)
@@ -16,11 +18,14 @@ const ProductCategory = ({ category }) => {
     product.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const handleBuy = (id) => {
+    navigation(`/buyNow/${id}`);
+  }
   return (
-    <div className='mx-20'>
+    <div className="mx-20">
       <div className="flex justify-between items-center bg-slate-900 mt-[1px] p-2 rounded mb-5">
         <div>
-          <h1 className="text-white ml-10 text-4xl font-serif">{category}  </h1>
+          <h1 className="text-white ml-10 text-4xl font-serif">{category} </h1>
         </div>
         <div className="flex gap-10 ">
           {/* Search Input */}
@@ -54,10 +59,12 @@ const ProductCategory = ({ category }) => {
       <div className="grid grid-cols-4 gap-10">
         {filteredProducts.length > 0 ? (
           filteredProducts.map(product => (
-            <Buy key={product._id} product={product} />
+            <Buy key={product._id} product={product} handleBuy={handleBuy} />
           ))
         ) : (
-          <p className='text-5xl text-indigo-200  w-[500px] text-center ml-80 mt-32 font-bold'>No Products Found</p>
+          <p className="text-5xl text-indigo-200  w-[500px] text-center ml-80 mt-32 font-bold">
+            No Products Found
+          </p>
         )}
       </div>
     </div>

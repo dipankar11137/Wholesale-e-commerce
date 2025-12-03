@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FaEdit } from 'react-icons/fa';
 import EditProduct from './EditProduct';
 
@@ -10,23 +10,23 @@ const MyProduct = ({ index, product, handleDelete }) => {
 
   return (
     <tr className="text-center text-slate-800">
-      <th className="bg-slate-200 border-r-[1px] border-slate-900">{index}</th>
-      <td className="bg-slate-200 border-r-[1px] border-slate-900">
+      <th className=" border-r-[1px] border-slate-900">{index}</th>
+      <td className=" border-r-[1px] border-slate-900">
         <div className="flex items-center">
           <img className="w-14 h-14 rounded-md" src={product?.img} alt="" />
           <h1 className="font-semibold ml-3">{product?.name}</h1>
         </div>
       </td>
-      <td className="bg-slate-200 border-r-[1px] border-slate-900">
+      <td className=" border-r-[1px] border-slate-900">
         <h1 className="font-semibold ml-3">{product?.category}</h1>
       </td>
-      <td className="bg-slate-200 border-r-[1px] border-slate-900">
+      <td className=" border-r-[1px] border-slate-900">
         <h1 className="ml-3 font-mono font-semibold">{product?.quantity}</h1>
       </td>
-      <td className="bg-slate-200 border-r-[1px] border-slate-900">
+      <td className=" border-r-[1px] border-slate-900">
         <h1 className="ml-3 font-mono font-semibold">{product?.price}</h1>
       </td>
-      <td className="bg-slate-200 border-r-[1px] border-slate-900">
+      <td className=" border-r-[1px] border-slate-900">
         <button onClick={openModal} className=" ">
           <FaEdit />
         </button>
@@ -44,7 +44,7 @@ const MyProduct = ({ index, product, handleDelete }) => {
           </div>
         )}
       </td>
-      <td className="bg-slate-200 border-r-[1px] border-slate-900">
+      <td className=" border-r-[1px] border-slate-900">
         <button
           onClick={() => handleDelete(product?._id)}
           className="btn btn-xs btn-primary"
