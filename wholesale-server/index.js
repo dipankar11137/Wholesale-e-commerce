@@ -26,10 +26,8 @@ async function run() {
   try {
     await client.connect();
     // console.log("database connect");
-   const userCollection = client.db('e-commerce').collection('user');
-    const productCollection = client
-      .db('e-commerce')
-      .collection('products');
+    const userCollection = client.db('e-commerce').collection('user');
+    const productCollection = client.db('e-commerce').collection('products');
     const bookProductCollection = client
       .db('e-commerce')
       .collection('bookings');
@@ -37,6 +35,9 @@ async function run() {
     const updateProductCollection = client
       .db('e-commerce')
       .collection('updateProducts');
+    const reviewCollection = client
+      .db('e-commerce')
+      .collection('reviews');
 
     //   // // // // // // // // // // // //
     // // post User
@@ -62,26 +63,50 @@ async function run() {
     });
 
     // get all user
-    app.get('/user', async (req, res) => {
+    app.get('/users', async (req, res) => {
       const query = {};
       const cursor = userCollection.find(query);
       const newCollection = await cursor.toArray();
       res.send(newCollection);
     });
+    // all User filter by email category
+    app.get('/user/:email', async (req, res) => {
+      const email = req.params.email;
+      const query = { email };
+      const cursor = userCollection.find(query);
+      const user = await cursor.toArray();
+      res.send(user);
+    });
 
     // // //                     product   //
     // // post product
-    app.post('/allProduct', async (req, res) => {
+    app.post('/products', async (req, res) => {
       const postResult = req.body;
       const result = await productCollection.insertOne(postResult);
       res.send(result);
     });
     // // get products
-    app.get('/allProduct', async (req, res) => {
+    app.get('/products', async (req, res) => {
       const query = {};
       const cursor = productCollection.find(query);
       const result = await cursor.toArray();
       res.send(result);
+    });
+    // all product filter by email category
+    app.get('/productCategory/:category', async (req, res) => {
+      const category = req.params.category;
+      const query = { category };
+      const cursor = productCollection.find(query);
+      const result = await cursor.toArray();
+      res.send(result);
+    });
+    // all product filter by email =
+    app.get('/emailProduct/:email', async (req, res) => {
+      const email = req.params.email;
+      const query = { email };
+      const cursor = productCollection.find(query);
+      const user = await cursor.toArray();
+      res.send(user);
     });
     // // get product by id
     app.get('/product/:id', async (req, res) => {
@@ -108,6 +133,36 @@ async function run() {
       );
       res.send(result);
     });
+    // update product
+    app.put('/updateProduct/:id', async (req, res) => {
+      const productId = req.params.id;
+      const updateProduct = req.body;
+
+      const filter = { _id: ObjectId(productId) }; // Assuming you're using MongoDB ObjectId
+      const options = { upsert: true };
+
+      const updatedDoc = {
+        $set: updateProduct,
+      };
+
+      try {
+        const result = await productCollection.updateOne(
+          filter,
+          updatedDoc,
+          options
+        );
+        res.json({
+          success: true,
+          message: 'Product updated successfully',
+          data: result,
+        });
+      } catch (error) {
+        console.error('Error updating Product:', error);
+        res
+          .status(500)
+          .json({ success: false, message: 'Internal server error' });
+      }
+    });
     // // Delete one product
     app.delete('/product/:id', async (req, res) => {
       const id = req.params.id;
@@ -122,65 +177,74 @@ async function run() {
       const result = await productCollection.findOne(query);
       res.send(result);
     });
-    // // // Delete all product
-    // app.delete('/productDelete', async (req, res) => {
-    //   const result = await productCollection.deleteMany(query);
-    //   res.send(result);
-    // });
 
-    // // update Product
+    //           ********
+    //          Buy Product
+    //          ***********
 
-    // app.post('/updateProduct', async (req, res) => {
-    //   const postResult = req.body;
-    //   const result = await updateProductCollection.insertOne(postResult);
-    //   res.send(result);
-    // });
-    // //  get update Product
-    // app.get('/updateProduct', async (req, res) => {
-    //   const query = {};
-    //   const cursor = updateProductCollection.find(query);
-    //   const result = await cursor.toArray();
-    //   res.send(result);
-    // });
-    // // // booking Product
+    app.post('/buy', async (req, res) => {
+      const postResult = req.body;
+      const result = await buyProductCollection.insertOne(postResult);
+      res.send(result);
+    });
+    // // get buy products
+    app.get('/buy', async (req, res) => {
+      const query = {};
+      const cursor = buyProductCollection.find(query);
+      const result = await cursor.toArray();
+      res.send(result);
+    });
+    // update payment
+    app.put('/buyPayment/:id', async (req, res) => {
+      const id = req.params.id;
+      const updatePayment = req.body;
+      const result = await buyProductCollection.updateOne(
+        { _id: ObjectId(id) },
+        { $set: { payment: updatePayment.payment } },
+        { upsert: true }
+      );
+      res.send(result);
+    });
+    // all product filter by email =
+    app.get('/buyEmail/:email', async (req, res) => {
+      const email = req.params.email;
+      const query = { email };
+      const cursor = buyProductCollection.find(query);
+      const user = await cursor.toArray();
+      res.send(user);
+    });
+    // Delete one buy  Product
+    app.delete('/buy/:id', async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const result = await buyProductCollection.deleteOne(query);
+      res.send(result);
+    });
 
-    // app.post('/bookings', async (req, res) => {
-    //   const postResult = req.body;
-    //   const result = await bookProductCollection.insertOne(postResult);
-    //   res.send(result);
-    // });
-    // // // get booking products
-    // app.get('/booking', async (req, res) => {
-    //   const query = {};
-    //   const cursor = bookProductCollection.find(query);
-    //   const result = await cursor.toArray();
-    //   res.send(result);
-    // });
-    // // Delete all book
-    // app.delete('/bookings', async (req, res) => {
-    //   const result = await bookProductCollection.deleteMany();
-    //   res.send(result);
-    // });
-    // // Delete one book  Product
-    // app.delete('/booking/:id', async (req, res) => {
-    //   const id = req.params.id;
-    //   const query = { _id: ObjectId(id) };
-    //   const result = await bookProductCollection.deleteOne(query);
-    //   res.send(result);
-    // });
-    // // buy information
-    // app.post('/buys', async (req, res) => {
-    //   const postResult = req.body;
-    //   const result = await buyProductCollection.insertOne(postResult);
-    //   res.send(result);
-    // });
-    // // // get booking products
-    // app.get('/buys', async (req, res) => {
-    //   const query = {};
-    //   const cursor = buyProductCollection.find(query);
-    //   const result = await cursor.toArray();
-    //   res.send(result);
-    // });
+
+    // review
+      app.post('/review', async (req, res) => {
+      const postResult = req.body;
+      const result = await reviewCollection.insertOne(postResult);
+      res.send(result);
+    });
+  app.get('/reviews', async (req, res) => {
+    const query = {};
+    const cursor = reviewCollection.find(query);
+    const result = await cursor.toArray();
+    res.send(result);
+  });
+  
+app.get('/review/:pid', async (req, res) => {
+  const pid = req.params.pid;
+  const reviews = await reviewCollection
+    .find({ pid })
+    .sort({ _id: -1 })
+    .toArray();
+  res.send(reviews);
+});
+
+    
   } finally {
   }
 }
@@ -188,9 +252,9 @@ async function run() {
 run().catch(console.dir);
 
 app.get('/', (req, res) => {
-  res.send('Running E-commerce server');
+  res.send('Running Wholesale');
 });
 
 app.listen(port, () => {
-  console.log('E-commerce server is running ');
+  console.log('Wholesale is running ');
 });
